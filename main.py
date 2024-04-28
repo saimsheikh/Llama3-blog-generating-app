@@ -5,7 +5,7 @@ from langchain_community.llms import CTransformers
 def getLLamaresponse(input_text,no_words,blog_style):
 
     ### LLama2 model
-    llm=CTransformers(model='E:\portfolio\download\Meta-Llama-3-8B',
+    llm=CTransformers(model='model/llama-2-7b-chat.ggmlv3.q2_K.bin',
                       model_type='llama',
                       config={'max_new_tokens':256,
                               'temperature':0.01})
@@ -21,7 +21,7 @@ def getLLamaresponse(input_text,no_words,blog_style):
                           template=template)
     
     ## Generate the ressponse from the LLama 2 model
-    response=llm(prompt.format(blog_style=blog_style,input_text=input_text,no_words=no_words))
+    response=llm.invoke(prompt.format(blog_style=blog_style,input_text=input_text,no_words=no_words))
     print(response)
     return response
 
@@ -30,7 +30,7 @@ def getLLamaresponse(input_text,no_words,blog_style):
 
 
 
-st.set_page_config(page_title="Generate Blogs",
+st.set_page_config(page_title="Generate Blogs - made it by Saim ",
                     page_icon='🤖',
                     layout='centered',
                     initial_sidebar_state='collapsed')
